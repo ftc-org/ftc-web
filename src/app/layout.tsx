@@ -60,7 +60,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={font.className}>
         <ReactQueryProvider>
-          <ProgressBar className="fixed top-0 h-1 bg-aljazeera-red">
+          <ProgressBar className="fixed top-0 h-1 bg-aljazeera-red z-50">
             {children}
           </ProgressBar>
         </ReactQueryProvider>
