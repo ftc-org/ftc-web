@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import Image from "next/image";
 import { AlertTriangle, Droplet } from "lucide-react";
@@ -101,7 +102,7 @@ export default function AboutUs() {
           </p>
           <button
             onClick={handleTweet}
-            className="bg-white text-aljazeera-red font-semibold py-2 px-4 rounded-lg hover:bg-blue-100 transition duration-300"
+            className="bg-white text-aljazeera-red font-semibold py-2 px-4 rounded-lg hover:bg-red-100 transition duration-300"
           >
             Get Involved
           </button>
