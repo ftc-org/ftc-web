@@ -1,11 +1,10 @@
 "use client";
-import React from "react";
-import { PostCard } from "./post-card";
-import { ChevronRight } from "lucide-react";
-import Link from "next/link";
-import { useGetEvents } from "@/api/get-events";
 import { useGetPosts } from "@/api";
+import { useGetEvents } from "@/api/get-events";
+import { ProgressBarLink } from "@/components/progress-bar";
 import clsx from "clsx";
+import { ChevronRight } from "lucide-react";
+import { PostCard } from "./post-card";
 
 export function LatestContent({ type }: { type: "Events" | "Posts" }) {
   const { events } = useGetEvents({ isLive: true });
@@ -31,7 +30,7 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
               <div className='text-aljazeera-red text-xl font-medium flex items-center gap-1'>
                 <Link href={`/${type.toLowerCase()}`}>
                   <span>View more</span>
-                </Link>{" "}
+                </ProgressBarLink>{" "}
                 <ChevronRight />
               </div>
             )

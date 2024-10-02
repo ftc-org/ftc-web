@@ -6,11 +6,11 @@ import { PostCard } from "./post-card";
 
 import { useGetPosts } from "@/api";
 import { useGetEvents } from "@/api/get-events";
-import { LatestContent } from "./latest-content";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
 import { ImageMasonryLayout } from "@/app/components/masonry-layout";
+import { ProgressBarLink } from "@/components/progress-bar";
 import { PATRIOTS } from "@/mocks/gallery";
+import { ChevronRight } from "lucide-react";
+import { LatestContent } from "./latest-content";
 
 function Landing() {
   const { events } = useGetEvents({ isLive: false });
@@ -78,13 +78,13 @@ function Landing() {
           <ul className='mt-4 md:block hidden'>
             <div className='flex items-center justify-between'>
               <h1 className='my-2 text-lg'>Media</h1>
-              <Link
+              <ProgressBarLink
                 href='/gallery'
                 className='my-2 text-lg flex items-center gap-1'
               >
                 <span> See All </span>
                 <ChevronRight />
-              </Link>
+              </ProgressBarLink>
             </div>
             <ImageMasonryLayout mediaItems={PATRIOTS} />
           </ul>
