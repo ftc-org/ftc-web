@@ -9,12 +9,12 @@ import { getFormattedDate } from "@/utils/date";
 import { Radio } from "lucide-react";
 
 export function LiveUpdateCard() {
-  const { events } = useGetEvents({ isLive: true });
+  const { events, isLoading } = useGetEvents({ isLive: true });
 
   const showLiveEvents =
     events && events.filter((event) => event.is_live === true);
 
-  if (showLiveEvents?.length === 0) {
+  if (showLiveEvents?.length === 0 || isLoading) {
     return (
       <div className='bg-aljazeera-red/10 h-full p-8 flex flex-col items-center justify-center rounded-xl'>
         <Radio height={50} className='animate-ping text-aljazeera-red' />

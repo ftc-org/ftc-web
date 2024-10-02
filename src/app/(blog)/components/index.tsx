@@ -13,7 +13,7 @@ import { ChevronRight } from "lucide-react";
 import { LatestContent } from "./latest-content";
 
 function Landing() {
-  const { events } = useGetEvents({ isLive: false });
+  const { events, isLoading } = useGetEvents({ isLive: false });
   const { posts } = useGetPosts();
 
   const trendingLinks = [
@@ -67,7 +67,7 @@ function Landing() {
         </div>
 
         <div className='lg:w-5/12'>
-          {showLiveEvents?.length === 0 ? null : (
+          {isLoading || showLiveEvents?.length === 0 ? null : (
             <ul className='mt-10 flex-1 grid md:grid-cols-2 grid-cols-1 h-fit gap-7'>
               {showLiveEvents?.map((event, index) => (
                 <PostCard item={event} key={index} />
@@ -97,9 +97,11 @@ function Landing() {
         </div>
       )}
 
-      <div className='py-10'>
-        <LatestContent type='Events' />
-      </div>
+      {events && events.length === 0 ? null : (
+        <div className='py-10'>
+          <LatestContent type='Events' />
+        </div>
+      )}
     </>
   );
 }
