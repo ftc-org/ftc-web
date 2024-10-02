@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   const allPosts = await getPosts();
 
   if (!allPosts || allPosts.length === 0) {
-    return [];
+    return [{ id: "1" }, { id: "2" }];
   }
 
   return allPosts.map((event) => ({

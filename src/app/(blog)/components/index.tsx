@@ -16,6 +16,8 @@ function Landing() {
   const { events } = useGetEvents({ isLive: false });
   const { posts } = useGetPosts();
 
+  console.log({ events });
+
   const trendingLinks = [
     {
       tag: "#FreeTheCitizens",

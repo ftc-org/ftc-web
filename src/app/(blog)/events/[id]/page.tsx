@@ -14,7 +14,7 @@ export async function generateStaticParams() {
   const allEvents = await getEvents();
 
   if (!allEvents || allEvents.length === 0) {
-    return [{}];
+    return [{ id: "1" }, { id: "2" }];
   }
 
   return allEvents?.map((event) => ({
