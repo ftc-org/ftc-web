@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "./providers";
+import { ProgressBar } from "@/components/progress-bar";
 
 const font = Familjen_Grotesk({ subsets: ["latin"] });
 
@@ -56,9 +57,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className={font.className}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          <ProgressBar className="fixed top-0 h-1 bg-aljazeera-red">
+            {children}
+          </ProgressBar>
+        </ReactQueryProvider>
       </body>
     </html>
   );
