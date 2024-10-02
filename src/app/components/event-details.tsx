@@ -1,13 +1,11 @@
 "use client";
 import Image from "next/image";
-import { useGetEvent } from "@/api/get-events";
-import Loader from "@/app/components/loader";
-import type { EventImage, Update } from "@/types";
+import type { EventImage, TEvent, Update } from "@/types";
 import { formatDate, formatTime, getFormattedDate } from "@/utils/date";
 import { LiveIndicator } from "./live-indicator";
 
 type Props = {
-  eventId: string;
+  event: TEvent;
 };
 
 function UpdateItem({ item }: { item: Update }) {
@@ -77,18 +75,7 @@ function UpdatesList({ updates }: { updates: Update[] }) {
   );
 }
 
-export function EventDetailsPage({ eventId }: Props) {
-  const { data, isLoading } = useGetEvent({ id: eventId });
-  if (isLoading) {
-    return (
-      <div className='max-w-screen-xl mx-auto px-3 min-h-[90vh] flex justify-center items-center'>
-        <Loader />
-      </div>
-    );
-  }
-
-  if (!data) return null;
-
+export function EventDetailsPage({ event }: Props) {
   return (
     <div className='max-w-screen-xl mx-auto px-3'>
       <div className='max-w-screen-xl mx-auto px-4 py-8'>
@@ -98,34 +85,34 @@ export function EventDetailsPage({ eventId }: Props) {
               <LiveIndicator label='Live Updates' />
             </div>
             <h1 className='text-3xl font-bold leading-tight text-gray-900'>
-              {data?.title}
+              {event?.title}
             </h1>
             <div className='flex gap-2'>
               <div className='h-6 bg-aljazeera-red w-[3px]' />
               <div className='flex items-center space-x-2 text-gray-700'>
                 <span>By Anon</span>
-                <span>{formatDate(data.created_at)}</span>
+                <span>{formatDate(event.created_at)}</span>
               </div>
             </div>
-            <p className='mt-2'>{data.description}</p>
+            <p className='mt-2'>{event.description}</p>
           </div>
           <div className='relative aspect-video'>
             <Image
-              src={data?.image?.image}
-              alt={data?.image?.caption}
+              src={event?.image?.image}
+              alt={event?.image?.caption}
               layout='fill'
               className='rounded-lg object-cover'
             />
           </div>
         </div>
       </div>
-      {data?.updates ? (
+      {event?.updates ? (
         <div className='mb-2'>
-          <span> {data?.updates?.length} Updates</span>
+          <span> {event?.updates?.length} Updates</span>
         </div>
       ) : null}
       <div className='h-px bg-gray-300 w-full' />
-      <UpdatesList updates={data.updates} />
+      <UpdatesList updates={event.updates} />
     </div>
   );
 }

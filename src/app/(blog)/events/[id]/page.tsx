@@ -1,5 +1,6 @@
-import { getEvents } from "@/api/get-events";
+import { getEventById, getEvents } from "@/api/get-events";
 import { EventDetailsPage } from "@/app/components/event-details";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: {
@@ -7,9 +8,16 @@ type Props = {
   };
 };
 async function EventPage(props: Props) {
-  return <EventDetailsPage eventId={props.params.id.toString()} />;
+  const event = await getEventById(props.params.id);
+
+  if (!event) {
+    return notFound();
+  }
+  return <EventDetailsPage event={event} />;
 }
+
 export const dynamic = "auto";
+
 export async function generateStaticParams() {
   const allEvents = await getEvents();
 

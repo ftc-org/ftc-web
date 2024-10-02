@@ -16,8 +16,6 @@ function Landing() {
   const { events } = useGetEvents({ isLive: false });
   const { posts } = useGetPosts();
 
-  console.log({ events });
-
   const trendingLinks = [
     {
       tag: "FreeTheCitizens",
@@ -32,7 +30,7 @@ function Landing() {
 
   const handleTweet = (hashtag: string) => {
     const twitterUrl = `https://x.com/search?q=${encodeURIComponent(
-     `#${hashtag}`
+      `#${hashtag}`
     )}&src=typed_query&f=top`;
     window.open(twitterUrl, "_blank", "noopener,noreferrer");
   };
@@ -56,7 +54,7 @@ function Landing() {
               onClick={() => handleTweet(link.tag)}
               className='rounded-md px-2 py-1 bg-aljazeera-red text-white hover:text-aljazeera-red hover:bg-white ease duration-200 w-fit grid place-items-center'
             >
-             #{link.tag}
+              #{link.tag}
             </button>
           );
         })}

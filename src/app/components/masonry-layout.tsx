@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { useSwipeable } from "react-swipeable";
 import { X, ChevronLeft, ChevronRight, Play, Expand } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MediaItem } from "@/types/media";
@@ -25,6 +26,13 @@ const FullScreenImage = ({
 }: FullScreenImageProps) => {
   const item = items[currentIndex];
 
+  const handlers = useSwipeable({
+    onSwipedLeft: () => onNext(),
+    onSwipedRight: () => onPrev(),
+    preventScrollOnSwipe: true,
+    trackMouse: true,
+  });
+
   useEffect(() => {
     if (item) {
       document.body.style.overflow = "hidden";
@@ -36,6 +44,7 @@ const FullScreenImage = ({
 
   return (
     <motion.div
+      {...handlers}
       className='fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center'
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -44,13 +53,13 @@ const FullScreenImage = ({
     >
       <button
         onClick={onClose}
-        className='absolute top-4 right-4 text-white hover:text-gray-300'
+        className='absolute top-4 right-4 text-white hover:text-gray-300 z-50'
       >
         <X size={24} />
       </button>
       <button
         onClick={onPrev}
-        className='absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300'
+        className='absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-gray-300 z-50'
       >
         <ChevronLeft size={48} />
       </button>
@@ -157,7 +166,7 @@ export const ImageMasonryLayout = ({
   return (
     <div className='bg-gray-100'>
       <div className='max-w-7xl mx-auto'>
-        <div className="mb-4">
+        <div className='mb-4'>
           <h1 className='my-3 text-center text-3xl'>{title}</h1>
           <p className='my-3 text-center'>{subtitle}</p>
         </div>
@@ -167,7 +176,7 @@ export const ImageMasonryLayout = ({
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {mediaItems.map((item, index) => (
+          {displayedItems.map((item, index) => (
             <motion.div
               key={item.id}
               className='relative overflow-hidden rounded-xl transition-shadow duration-300 group break-inside-avoid mb-4'
