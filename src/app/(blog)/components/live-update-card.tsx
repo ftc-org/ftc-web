@@ -10,6 +10,14 @@ import { getFormattedDate } from "@/utils/date";
 export function LiveUpdateCard() {
   const { events } = useGetEvents({ isLive: true });
 
+  if (events && events?.length <= 0) {
+    return (
+      <div>
+        <h2 className="text-2xl font-bold mb-4">No live events found</h2>
+      </div>
+    );
+  }
+
   const event = events?.[0];
 
   const UpdatesComponent = ({ updates }: { updates: TEvent["updates"] }) => {

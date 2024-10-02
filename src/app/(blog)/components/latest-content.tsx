@@ -14,15 +14,26 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
   const content = type === "Events" ? events : posts;
   const contentLength = content?.length;
 
+  if (events && events?.length <= 0) {
+    return (
+      <div>
+        <h1 className="text-aljazeera-red text-xl font-medium mb-2">
+          Latest {type}
+        </h1>
+        <h2 className="text-2xl font-bold mb-4">No events found</h2>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <div className='flex items-center justify-between my-8'>
-        <h1 className='text-aljazeera-red text-xl font-medium'>
+      <div className="flex items-center justify-between my-8">
+        <h1 className="text-aljazeera-red text-xl font-medium">
           Latest {type}
         </h1>
         {content
           ? content?.length > 4 && (
-              <div className='text-aljazeera-red text-xl font-medium flex items-center gap-1'>
+              <div className="text-aljazeera-red text-xl font-medium flex items-center gap-1">
                 <Link href={`/${type.toLowerCase()}`}>
                   <span>View more</span>
                 </Link>{" "}
@@ -37,7 +48,7 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
         })}
       >
         {content?.slice(0, 4).map((item, index) => (
-          <li key={index} className='list-none'>
+          <li key={index} className="list-none">
             <PostCard key={index} item={item} content_length={contentLength} />
           </li>
         ))}
