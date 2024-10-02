@@ -43,7 +43,7 @@ export function LiveUpdateCard() {
                   href={`/events/${event?.id}#${item.id}`}
                   className='text-base font-semibold mt-1 hover:underline block'
                 >
-                  <p className='line-clamp-1'>{item.content}</p>
+                  <p className='line-clamp-1'>{item.summary}</p>
                 </ProgressBarLink>
               </div>
             </div>
