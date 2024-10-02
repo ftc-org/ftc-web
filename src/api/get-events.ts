@@ -15,12 +15,18 @@ export const getEvents = cache(
 
       const response = await axios.get(endpoint);
 
-    return response.data.results;
-  } catch (error) {
-    console.error("Failed to fetch events:", error);
-    return;
+      if (isLive && response.data.results.length === 0) {
+        const fallbackResponse = await axios.get(`${BASE_API_URL}/events`);
+        return fallbackResponse.data.results;
+      }
+
+      return response.data.results;
+    } catch (error) {
+      console.error("Failed to fetch events:", error);
+      return;
+    }
   }
-})
+);
 
 export async function getRelatedEvents(
   id: number
