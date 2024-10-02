@@ -71,7 +71,7 @@ const Navbar: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="lg:sticky relative top-0 w-full z-50 bg-[#f6f6f6]">
+    <nav className="lg:sticky relative top-0 w-full z-40 bg-[#f6f6f6]">
       <div className="max-w-screen-xl mx-auto px-4 py-3 md:py-5 flex justify-between items-center">
         <ProgressBarLink href="/">
           <Image
