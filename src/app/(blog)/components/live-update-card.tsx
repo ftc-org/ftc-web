@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Link from "next/link";
 
 import { LiveIndicator } from "@/app/components/live-indicator";
 
 import { useGetEvents } from "@/api/get-events";
+import { ProgressBarLink } from "@/components/progress-bar";
 import { type TEvent } from "@/types";
 import { getFormattedDate } from "@/utils/date";
 
@@ -34,12 +34,12 @@ export function LiveUpdateCard() {
                 <span className="text-sm text-gray-600 font-medium">
                   {getFormattedDate(item.created_at)}
                 </span>
-                <Link
+                <ProgressBarLink
                   href={`/events/${event?.id}#${item.id}`}
                   className="text-base font-semibold mt-1 hover:underline block"
                 >
-                  <p className="line-clamp-1">{item.content}</p>
-                </Link>
+                  <p className="line-clamp-1">{item.summary}</p>
+                </ProgressBarLink>
               </div>
             </div>
           ))}
