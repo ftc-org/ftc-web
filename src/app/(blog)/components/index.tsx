@@ -1,5 +1,5 @@
 "use client";
-import { Fragment } from "react";
+import React from "react";
 
 import { LiveUpdateCard } from "./live-update-card";
 import { PostCard } from "./post-card";
@@ -35,8 +35,10 @@ function Landing() {
     window.open(twitterUrl, "_blank", "noopener,noreferrer");
   };
 
+  const showLiveEvents = events && events.filter((event) => event.is_live);
+
   return (
-    <Fragment>
+    <>
       <div>
         <h1 className='text-lg font-bold tracking-tight lg:text-3xl text-aljazeera-red'>
           #FreeTheCitizens
@@ -65,11 +67,13 @@ function Landing() {
         </div>
 
         <div className='lg:w-5/12'>
-          <ul className='mt-10 flex-1 grid md:grid-cols-2 grid-cols-1 h-fit gap-7'>
-            {events?.map((event, index) => (
-              <PostCard item={event} key={index} />
-            ))}
-          </ul>
+          {showLiveEvents?.length === 0 ? null : (
+            <ul className='mt-10 flex-1 grid md:grid-cols-2 grid-cols-1 h-fit gap-7'>
+              {showLiveEvents?.map((event, index) => (
+                <PostCard item={event} key={index} />
+              ))}
+            </ul>
+          )}
 
           <ul className='mt-4 md:block hidden'>
             <div className='flex items-center justify-between'>
@@ -96,7 +100,7 @@ function Landing() {
       <div className='py-10'>
         <LatestContent type='Events' />
       </div>
-    </Fragment>
+    </>
   );
 }
 

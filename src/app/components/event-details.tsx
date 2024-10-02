@@ -3,48 +3,116 @@ import Image from "next/image";
 import type { EventImage, TEvent, Update } from "@/types";
 import { formatDate, formatTime, getFormattedDate } from "@/utils/date";
 import { LiveIndicator } from "./live-indicator";
+import { SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import { ImageSlider } from "./image-carousel";
+import { FullScreenImage } from "../(blog)/components/fullscreen-image";
+import { useState } from "react";
+import { MediaItem } from "@/types/media";
+import { AnimatePresence } from "framer-motion";
 
 type Props = {
   event: TEvent;
 };
 
 function UpdateItem({ item }: { item: Update }) {
+  const imagesData: MediaItem[] =
+    item.images &&
+    item.images.map((data, index) => ({
+      id: index + 1,
+      title: data.caption,
+      type: "image",
+      src: data.image,
+    }));
+
+  const [fullScreenIndex, setFullScreenIndex] = useState<number | null>(null);
+  const [direction, setDirection] = useState<"left" | "right">("right");
+
+  const openFullScreen = (index: number) => {
+    if (imagesData[index].type === "image") {
+      setFullScreenIndex(index);
+      setDirection("right");
+    }
+  };
+
+  const closeFullScreen = () => {
+    setFullScreenIndex(null);
+  };
+
+  const goToPrevImage = () => {
+    setDirection("left");
+    setFullScreenIndex((prevIndex) =>
+      prevIndex !== null
+        ? prevIndex > 0
+          ? prevIndex - 1
+          : imagesData.length - 1
+        : null
+    );
+  };
+
+  const goToNextImage = () => {
+    setDirection("right");
+    setFullScreenIndex((prevIndex) =>
+      prevIndex !== null
+        ? prevIndex < imagesData.length - 1
+          ? prevIndex + 1
+          : 0
+        : null
+    );
+  };
   return (
-    <div className='flex items-start mb-8 relative' id={String(item.id)}>
-      <div className='absolute left-0 -mt-2 lg:ml-6 ml-2 flex items-center gap-2'>
-        <div className='size-[10px] bg-orange-500 rounded-full ring-4 ring-orange-200'></div>
-        <div className='flex gap-1'>
-          <span className='text-sm text-gray-800 font-bold block'>
-            {getFormattedDate(item.created_at)}
-          </span>
-          <span className='text-sm text-gray-600 font-light block'>
-            ({formatTime(item.created_at)} GMT)
-          </span>
+    <div>
+      <AnimatePresence initial={false} custom={direction}>
+        {fullScreenIndex !== null && (
+          <FullScreenImage
+            items={imagesData}
+            currentIndex={fullScreenIndex}
+            onClose={closeFullScreen}
+            onPrev={goToPrevImage}
+            onNext={goToNextImage}
+            direction={direction}
+          />
+        )}
+      </AnimatePresence>
+
+      <div className='flex items-start mb-8 relative' id={String(item.id)}>
+        <div className='absolute left-0 -mt-2 lg:ml-6 ml-2 flex items-center gap-2'>
+          <div className='size-[10px] bg-orange-500 rounded-full ring-4 ring-orange-200'></div>
+          <div className='flex gap-1'>
+            <span className='text-sm text-gray-800 font-bold block'>
+              {getFormattedDate(item.created_at)}
+            </span>
+            <span className='text-sm text-gray-600 font-light block'>
+              ({formatTime(item.created_at)} GMT)
+            </span>
+          </div>
         </div>
-      </div>
-      <div className='lg:ml-0 md:ml-4 ml-0 bg-white p-4 rounded-md border mt-8 w-full'>
-        {/* <span className='text-sm text-gray-500 font-medium'>
-          {formatDate(item.created_at)} : {formatTime(item.created_at)}
-        </span> */}
-        <h1 className='text-lg font-bold tracking-tight lg:text-xl mt-2 mb-[0.5]'>
-          {item.summary}
-        </h1>
-        <p className='mt-6'>{item.content}</p>
-        <div className='grid grid-cols-4 my-5'>
-          {item.images.map((image: EventImage, index: number) => (
-            <div key={index}>
-              <Image
-                className='w-full lg:h-[250px] object-cover rounded-xl'
-                src={image.image ?? "/images/default.jpg"}
-                alt={image.caption ?? "free the citizens"}
-                width={500}
-                height={300}
-              />
-              <p className='text-sm text-gray-500 font-medium'>
-                {image.caption}
-              </p>
-            </div>
-          ))}
+        <div className='lg:ml-0 md:ml-4 ml-0 bg-white p-4 rounded-md border mt-8 w-full'>
+          <h1 className='text-lg font-bold tracking-tight lg:text-xl mt-2 mb-[0.5]'>
+            {item.summary}
+          </h1>
+          <p className='mt-6'>{item.content}</p>
+          <div className='my-5 w-full'>
+            <ImageSlider data={item.images}>
+              {item.images.map((image: EventImage, index: number) => (
+                <SwiperSlide key={index} onClick={() => openFullScreen(index)}>
+                  <div className='relative lg:h-[30rem] h-60 w-full'>
+                    <Image
+                      className='w-full h-full object-cover rounded-md'
+                      src={image.image ?? "/images/default.jpg"}
+                      alt={image.caption ?? "free the citizens"}
+                      fill
+                    />
+                    <em className='text-sm text-gray-500 font-medium'>
+                      {image.caption}
+                    </em>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </ImageSlider>
+          </div>
         </div>
       </div>
     </div>
@@ -67,9 +135,6 @@ function UpdatesList({ updates }: { updates: Update[] }) {
         {updates.map((item, index) => (
           <UpdateItem key={index} item={item} />
         ))}
-        <div className='absolute left-0 bottom-0 lg:ml-6 ml-2'>
-          <div className='size-[10px] bg-orange-500 rounded-full ring-4 ring-orange-200'></div>
-        </div>
       </div>
     </div>
   );
@@ -81,8 +146,10 @@ export function EventDetailsPage({ event }: Props) {
       <div className='max-w-screen-xl mx-auto px-4 py-8'>
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 items-start'>
           <div className='space-y-4'>
-            <div className='inline-flex items-center space-x-2 px-3'>
-              <LiveIndicator label='Live Updates' />
+            <div className='inline-flex items-center space-x-2'>
+              <div className='static top-4 bg-white px-3 py-0.5 rounded-full'>
+                <LiveIndicator label='Live Updates' />
+              </div>
             </div>
             <h1 className='text-3xl font-bold leading-tight text-gray-900'>
               {event?.title}
