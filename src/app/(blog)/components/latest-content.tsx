@@ -8,22 +8,17 @@ import { useGetPosts } from "@/api";
 import clsx from "clsx";
 
 export function LatestContent({ type }: { type: "Events" | "Posts" }) {
-  const { events } = useGetEvents({ isLive: true });
+  const { events } = useGetEvents({ isLive: false });
   const { posts } = useGetPosts();
 
-  const content = type === "Events" ? events : posts;
-  const contentLength = content?.length;
+  let content = type === "Events" ? events : posts;
 
-  if (events && events?.length <= 0) {
-    return (
-      <div>
-        <h1 className="text-aljazeera-red text-xl font-medium mb-2">
-          Latest {type}
-        </h1>
-        <h2 className="text-2xl font-bold mb-4">No events found</h2>
-      </div>
-    );
+  if (type === "Events") {
+    const liveEvents = events?.filter((event) => event.is_live === true);
+    content = liveEvents && liveEvents.length > 0 ? liveEvents : events;
   }
+
+  const contentLength = content?.length;
 
   return (
     <div>
@@ -32,7 +27,7 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
           Latest {type}
         </h1>
         {content
-          ? content?.length > 4 && (
+          ? content.length > 4 && (
               <div className="text-aljazeera-red text-xl font-medium flex items-center gap-1">
                 <Link href={`/${type.toLowerCase()}`}>
                   <span>View more</span>
