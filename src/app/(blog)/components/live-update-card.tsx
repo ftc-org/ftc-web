@@ -44,7 +44,7 @@ export function LiveUpdateCard() {
                   className='text-base font-semibold mt-1 hover:underline block'
                 >
                   <p className='line-clamp-1'>{item.content}</p>
-                </Link>
+                </ProgressBarLink>
               </div>
             </div>
           ))}
