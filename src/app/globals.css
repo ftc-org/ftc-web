@@ -17,15 +17,12 @@ body {
   scroll-behavior: smooth;
 }
 
-.unblur {
-  animation: unblur 1s linear;
+.blur {
+  filter: blur(5px);
+  transition: filter 0.3s ease-in;
 }
 
-@keyframes unblur {
-  from {
-    filter: blur(20px);
-  }
-  to {
-    filter: blur(0);
-  }
+.remove-blur {
+  filter: blur(0px);
+  transition: filter 0.3s ease-in;
 }
