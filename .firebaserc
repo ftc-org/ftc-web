@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "ftc-org"
-  }
+  },
+  "targets": {
+    "ftc-org": {
+      "hosting": {
+        "ftc-org": [
+          "ftc-org"
+        ],
+        "prod-ftc-org": [
+          "prod-ftc-org"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
