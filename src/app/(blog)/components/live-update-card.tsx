@@ -8,14 +8,17 @@ import { type TEvent } from "@/types";
 import { getFormattedDate } from "@/utils/date";
 import { Radio } from "lucide-react";
 import ReactHtmlParser from "react-html-parser";
+import { useState } from "react";
+import clsx from "clsx";
 
 export function LiveUpdateCard() {
-  const { events, isLoading } = useGetEvents({ isLive: true });
+  const [isImageLoading, setImageLoading] = useState(true);
+  const { events, isSuccess } = useGetEvents({ isLive: true });
 
   const showLiveEvents =
     events && events.filter((event) => event.is_live === true);
 
-  if (showLiveEvents?.length === 0 || isLoading) {
+  if (isSuccess && showLiveEvents?.length === 0) {
     return (
       <div className='bg-aljazeera-red/10 h-full p-8 flex flex-col items-center justify-center rounded-xl'>
         <Radio height={50} className='animate-ping text-aljazeera-red' />
@@ -63,11 +66,16 @@ export function LiveUpdateCard() {
     <div>
       <div className='lg:w-full relative lg:aspect-[2/3] aspect-auto lg:h-96 h-60 sm:aspect-auto'>
         <Image
-          className='h-auto w-full object-cover rounded-t-xl'
+          className={clsx(
+            "h-auto w-full object-cover rounded-t-xl",
+            { blur: isImageLoading },
+            { "remove-blur": !isImageLoading }
+          )}
           src={(event?.image?.image as string) ?? "/images/default.jpg"}
           alt={(event?.image?.caption as string) ?? "free the citizens"}
           fill
           sizes='(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 100vw'
+          onLoad={() => setImageLoading(false)}
         />
         <div className='absolute top-4 left-4 bg-white px-3 py-0.5 rounded-full'>
           <LiveIndicator label='Live Updates' />

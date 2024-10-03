@@ -12,11 +12,6 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
 
   const content = type === "Events" ? events : posts;
 
-  // if (type === "Events") {
-  //   const liveEvents = events?.filter((event) => event.is_live === true);
-  //   content = liveEvents && liveEvents.length > 0 ? liveEvents : events;
-  // }
-
   const contentLength = content?.length;
 
   return (

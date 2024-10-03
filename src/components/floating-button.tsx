@@ -17,7 +17,7 @@ export function FloatingButton() {
 
   const matches = useMediaQuery("(min-width:600px)");
 
-  const shareLink = "";
+  const shareLink = "https://www.freethecitizens.org/";
 
   const SHARE_LINKS_DATA = [
     {
