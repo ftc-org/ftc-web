@@ -3,7 +3,7 @@ import { getEvents } from "@/api/get-events";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://www.freethecitizens.org/";
+  const baseUrl = "http://localhost:3000/";
 
   try {
     const [posts, events] = await Promise.all([
@@ -31,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.8,
       },
       {
-        url: `${baseUrl}/blog`,
+        url: `${baseUrl}/gallery`,
         lastModified: new Date().toISOString(),
         changeFrequency: "weekly",
         priority: 0.9,
@@ -40,8 +40,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const postEntries: MetadataRoute.Sitemap = posts
       ? posts.map((post) => ({
-          url: `${baseUrl}/blog/${post.id}`,
-          lastModified: post.updated_at.toISOString(),
+          url: `${baseUrl}/posts/${post.id}`,
+          lastModified: new Date(post.updated_at),
           changeFrequency: "weekly",
           priority: 0.7,
         }))
@@ -50,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const eventEntries: MetadataRoute.Sitemap = events
       ? events.map((event) => ({
           url: `${baseUrl}/events/${event.id}`,
-          lastModified: event.updated_at.toISOString(),
+          lastModified: new Date(event.updated_at),
           changeFrequency: "weekly",
           priority: 0.6,
         }))
@@ -59,6 +59,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [...staticPages, ...postEntries, ...eventEntries];
   } catch (error) {
     console.error("Error generating sitemap:", error);
-    return []; // Return an empty sitemap in case of error
+    return [];
   }
 }
