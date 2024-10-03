@@ -12,11 +12,6 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
 
   const content = type === "Events" ? events : posts;
 
-  // if (type === "Events") {
-  //   const liveEvents = events?.filter((event) => event.is_live === true);
-  //   content = liveEvents && liveEvents.length > 0 ? liveEvents : events;
-  // }
-
   const contentLength = content?.length;
 
   return (
@@ -39,6 +34,7 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
       <ul
         className={clsx("grid grid-cols-1 md:grid-cols-2 gap-6", {
           "lg:grid-cols-3": contentLength && contentLength < 4,
+          "lg:grid-cols-4": contentLength && contentLength >= 4,
         })}
       >
         {content?.slice(0, 4).map((item, index) => (

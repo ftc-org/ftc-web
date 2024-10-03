@@ -1,6 +1,12 @@
 import Head from 'next/head';
 
-const Meta = ({ title, description }: string) => {
+const Meta = ({
+	title,
+	description,
+}: {
+	title: string;
+	description: string;
+}) => {
 	return (
 		<Head>
 			<title>{title}</title>
