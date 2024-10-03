@@ -2,6 +2,8 @@ import { MediaItem } from "@/types/media";
 import chinaGalamsey from "/public/gallery/china-galamsey.webp";
 import galamseyGhana from "/public/gallery/galamsey-ghana-illegal-mining.webp";
 import galamseysite from "/public/gallery/galamsey-site.jpg";
+import stop_galamsey from "/public/gallery/stop_galamsey_24.jpeg";
+import mercury_chilled from "/public/gallery/mercury_chilled.jpeg";
 import galamseyOperations from "/public/gallery/galamsey.jpeg";
 import illegalMining from "/public/gallery/illegal-mining.jpg";
 import pollutedWater from "/public/gallery/polluted-water.jpg";
@@ -104,5 +106,19 @@ export const mediaItems: MediaItem[] = [
     src: "https://www.youtube.com/embed/s6Xv0MoRxPM?si=FqygfONypJzNjqus",
     type: "video",
     description: "Video showcasing illegal mining activities",
+  },
+  {
+    id: 8,
+    title: "Contaminated water",
+    src: mercury_chilled,
+    type: "image",
+    description: "Water pollution caused by galamsey activities",
+  },
+  {
+    id: 9,
+    title: "Infographic on the upcoming protest",
+    src: stop_galamsey,
+    type: "image",
+    description: "The youth protests against galamsey",
   },
 ];
