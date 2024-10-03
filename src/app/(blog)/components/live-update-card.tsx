@@ -45,7 +45,7 @@ export function LiveUpdateCard() {
                   className="text-base font-semibold mt-1 hover:underline block"
                 >
                   <div className="Html__Wrapper line-clamp-1">
-                    {ReactHtmlParser(item.content)}
+                    {ReactHtmlParser(item.summary)}
                   </div>
                 </ProgressBarLink>
               </div>
