@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Play, Expand } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MediaItem } from "@/types/media";
-import { FullScreenImage } from "../(blog)/components/fullscreen-image";
+import { FullScreenImage } from "../app/(blog)/components/fullscreen-image";
 
 export const ImageMasonryLayout = ({
   mediaItems,

@@ -3,7 +3,7 @@
 
 import React from "react";
 import { mediaItems, PATRIOTS } from "@/mocks/gallery";
-import { ImageMasonryLayout } from "@/app/components/masonry-layout";
+import { ImageMasonryLayout } from "@/components/masonry-layout";
 
 const GalleryPage = () => {
   return (

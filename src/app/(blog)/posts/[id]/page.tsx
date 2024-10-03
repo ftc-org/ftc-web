@@ -1,6 +1,6 @@
-import { getPostById, getPosts } from "@/api";
-import { PostDetailsPage } from "@/app/components/post-details";
+import { getPostById } from "@/api";
 import { notFound } from "next/navigation";
+import { PostDetailsPage } from "./components/post-details";
 
 type Props = {
   params: {
@@ -11,23 +11,11 @@ type Props = {
 async function PostPage(props: Props) {
   const post = await getPostById(props.params.id);
 
-  if (!post) return notFound();
-
-  return <PostDetailsPage post={post} />;
-}
-
-export const dynamicParams = true;
-
-export async function generateStaticParams() {
-  const allPosts = await getPosts();
-
-  if (!allPosts || allPosts.length === 0) {
-    return [{ id: "1" }, { id: "2" }];
+  if (!post) {
+    return notFound();
   }
 
-  return allPosts.map((post) => ({
-    id: post.id.toString(),
-  }));
+  return <PostDetailsPage post={post} />;
 }
 
 export default PostPage;

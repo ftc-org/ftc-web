@@ -7,7 +7,8 @@ type Props = {
   post: Post;
 };
 export function PostDetailsPage({ post }: Props) {
-  const renderContent = (content: string) => {
+
+  const renderContent = (content:string) => {
     // Split the content by each numbered step
     const sections = content.split(/\d\.\s/).filter(Boolean);
 
@@ -26,24 +27,26 @@ export function PostDetailsPage({ post }: Props) {
   };
 
   return (
-    <div className='max-w-screen-xl mx-auto px-3'>
+    <div className="max-w-screen-xl mx-auto px-3">
       <div>
         <Image
-          className='w-full h-[500px] object-cover rounded-xl'
-          src={(post?.image as string) ?? "/images/default.jpg"}
-          alt={(post?.title as string) ?? "free the citizens"}
+          className="w-full h-[500px] object-cover rounded-xl"
+          src={(post.image as string) ?? "/images/default.jpg"}
+          alt={(post.title as string) ?? "free the citizens"}
           width={800}
           height={400}
         />
         <br />
-        <h1 className='text-lg font-bold tracking-tight lg:text-3xl text-aljazeera-red'>
-          {post?.title}
+        <h1 className="text-lg font-bold tracking-tight lg:text-3xl text-aljazeera-red">
+          {post.title}
         </h1>
-        <p className='my-2'>{formatDate(post?.created_at as Date)}</p>
+        <p className="my-2">{formatDate(post.created_at as Date)}</p>
       </div>
-      <hr className='my-5' />
+      <hr className="my-5" />
       <div>
-        <div>{renderContent(post?.content as string)}</div>
+        <div>
+          {renderContent(post.content as string)}
+        </div>
       </div>
     </div>
   );
