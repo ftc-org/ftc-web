@@ -3,7 +3,7 @@ import { getEvents } from "@/api/get-events";
 import { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "http://localhost:3000/";
+  const baseUrl = "https://www.freethecitizens.org/";
 
   try {
     const [posts, events] = await Promise.all([
