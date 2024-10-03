@@ -46,6 +46,13 @@ body {
   margin-left: 1.5em;
   padding-top: 0.6em;
   padding-bottom: 0.2em;
+}
+
+.Html__Wrapper ul li{
+  list-style: circle;
+}
+
+.Html__Wrapper ol li{
   list-style: decimal;
 }
 
