@@ -26,3 +26,29 @@ body {
   filter: blur(0px);
   transition: filter 0.3s ease-in;
 }
+
+.Html__Wrapper > h3,
+.Html__Wrapper > h4 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.Html__Wrapper > p {
+  color: #090909;
+  font-weight: 400;
+  margin: 6px;
+}
+
+/* .Html__Wrapper > div {
+} */
+
+.Html__Wrapper ol li, .Html__Wrapper ul li{
+  margin-left: 1.5em;
+  padding-top: 0.6em;
+  padding-bottom: 0.2em;
+  list-style: decimal;
+}
+
+.video-player div > video {
+  border-radius: 10px;
+}
