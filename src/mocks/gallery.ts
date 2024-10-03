@@ -15,22 +15,52 @@ import patriotMessage04 from "/public/gallery/patriot-msg-04.jpeg";
 import patriotMessage05 from "/public/gallery/patriot-msg-05.jpeg";
 import patriotMessage06 from "/public/gallery/patriot-msg-06.jpeg";
 
+import liveImage1 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.22 (1).jpeg";
+import liveImage2 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.22 (2).jpeg";
+import liveImage3 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.22 (3).jpeg";
+import liveImage4 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.22.jpeg";
+import liveImage5 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.23 (1).jpeg";
+import liveImage6 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.23.jpeg";
+import liveImage7 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.24 (1).jpeg";
+import liveImage8 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.24.jpeg";
+import liveImage9 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.25 (1).jpeg";
+import liveImage10 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.25 (2).jpeg";
+import liveImage11 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.25 (3).jpeg";
+import liveImage12 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.25.jpeg";
+import liveImage13 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.26 (1).jpeg";
+import liveImage14 from "/public/live-images/WhatsApp Image 2024-10-03 at 11.06.26.jpeg";
+
 export const PATRIOTS: MediaItem[] = [
   {
-    id: 1,
+    id: 13,
     type: "image",
-    src: patriotMessage01,
+    src: liveImage13,
   },
   {
-    title: "patriotMessage02",
+    id: 7,
+    type: "image",
+    src: liveImage1,
+  },
+  {
+    id: 20,
+    type: "image",
+    src: liveImage14,
+  },
+  {
     id: 2,
+    title: "patriotMessage02",
     type: "image",
     src: patriotMessage02,
   },
   {
-    id: 3,
+    id: 16,
     type: "image",
-    src: patriotMessage03,
+    src: liveImage10,
+  },
+  {
+    id: 10,
+    type: "image",
+    src: liveImage4,
   },
   {
     id: 4,
@@ -38,14 +68,74 @@ export const PATRIOTS: MediaItem[] = [
     src: patriotMessage04,
   },
   {
+    id: 40,
+    type: "image",
+    src: liveImage7,
+  },
+  {
     id: 5,
     type: "image",
     src: patriotMessage05,
   },
   {
+    id: 9,
+    type: "image",
+    src: liveImage3,
+  },
+  {
+    id: 18,
+    type: "image",
+    src: liveImage12,
+  },
+  {
     id: 6,
     type: "image",
     src: patriotMessage06,
+  },
+  {
+    id: 11,
+    type: "image",
+    src: liveImage5,
+  },
+  {
+    id: 14,
+    type: "image",
+    src: liveImage8,
+  },
+  {
+    id: 1,
+    type: "image",
+    src: patriotMessage01,
+  },
+  {
+    id: 19,
+    type: "image",
+    src: liveImage13,
+  },
+  {
+    id: 12,
+    type: "image",
+    src: liveImage6,
+  },
+  {
+    id: 3,
+    type: "image",
+    src: patriotMessage03,
+  },
+  {
+    id: 8,
+    type: "image",
+    src: liveImage2,
+  },
+  {
+    id: 15,
+    type: "image",
+    src: liveImage9,
+  },
+  {
+    id: 17,
+    type: "image",
+    src: liveImage11,
   },
 ];
 

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { LiveUpdateCard } from "./live-update-card";
 import { PostCard } from "./post-card";
@@ -8,13 +8,31 @@ import { useGetPosts } from "@/api";
 import { useGetEvents } from "@/api/get-events";
 import { ImageMasonryLayout } from "@/components/masonry-layout";
 import { ProgressBarLink } from "@/components/progress-bar";
-import { PATRIOTS } from "@/mocks/gallery";
+import { mediaItems, PATRIOTS } from "@/mocks/gallery";
 import { ChevronRight } from "lucide-react";
 import { LatestContent } from "./latest-content";
+import { MediaItem } from "@/types/media";
+import { shuffleArray } from "@/utils/functions";
 
 function Landing() {
   const { events, isSuccess } = useGetEvents({ isLive: false });
   const { posts } = useGetPosts();
+
+  const [shuffledImages, setShuffledImages] = useState<MediaItem[]>(
+    PATRIOTS.slice(0, 6)
+  );
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const newShuffledImages = shuffleArray([
+        ...PATRIOTS,
+        ...mediaItems,
+      ]).slice(3, 9);
+      setShuffledImages(newShuffledImages);
+    }, 4500);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   const trendingLinks = [
     {
@@ -86,7 +104,7 @@ function Landing() {
                 <ChevronRight />
               </ProgressBarLink>
             </div>
-            <ImageMasonryLayout mediaItems={PATRIOTS} />
+            <ImageMasonryLayout mediaItems={shuffledImages} />
           </ul>
         </div>
       </div>
