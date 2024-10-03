@@ -8,7 +8,7 @@ import { Roboto } from "next/font/google";
 import { type Post, type TEvent } from "@/types";
 import { getFormattedDate } from "@/utils/date";
 
-import { LiveIndicator } from "@/app/components/live-indicator";
+import { LiveIndicator } from "@/components/live-indicator";
 import { ProgressBarLink } from "@/components/progress-bar";
 
 type PostOrEvent = Post | TEvent;

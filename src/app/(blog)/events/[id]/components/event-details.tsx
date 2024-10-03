@@ -2,16 +2,16 @@
 import Image from "next/image";
 import type { EventImage, TEvent, Update } from "@/types";
 import { formatDate, formatTime, getFormattedDate } from "@/utils/date";
-import { LiveIndicator } from "./live-indicator";
 import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
-import { ImageSlider } from "./image-carousel";
-import { FullScreenImage } from "../(blog)/components/fullscreen-image";
 import { useState } from "react";
 import { MediaItem } from "@/types/media";
 import { AnimatePresence } from "framer-motion";
+import { FullScreenImage } from "@/app/(blog)/components/fullscreen-image";
+import { ImageSlider } from "@/components/image-carousel";
+import { LiveIndicator } from "@/components/live-indicator";
 
 type Props = {
   event: TEvent;

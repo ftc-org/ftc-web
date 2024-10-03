@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { LiveIndicator } from "@/app/components/live-indicator";
+import { LiveIndicator } from "@/components/live-indicator";
 
 import { useGetEvents } from "@/api/get-events";
 import { ProgressBarLink } from "@/components/progress-bar";

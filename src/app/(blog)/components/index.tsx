@@ -6,7 +6,7 @@ import { PostCard } from "./post-card";
 
 import { useGetPosts } from "@/api";
 import { useGetEvents } from "@/api/get-events";
-import { ImageMasonryLayout } from "@/app/components/masonry-layout";
+import { ImageMasonryLayout } from "@/components/masonry-layout";
 import { ProgressBarLink } from "@/components/progress-bar";
 import { PATRIOTS } from "@/mocks/gallery";
 import { ChevronRight } from "lucide-react";

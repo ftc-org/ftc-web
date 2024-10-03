@@ -3,7 +3,7 @@
 
 import React from "react";
 import { mediaItems, PATRIOTS } from "@/mocks/gallery";
-import { ImageMasonryLayout } from "@/app/components/masonry-layout";
+import { ImageMasonryLayout } from "@/components/masonry-layout";
 
 const GalleryPage = () => {
   return (
@@ -11,9 +11,9 @@ const GalleryPage = () => {
       <ImageMasonryLayout
         mediaItems={[...mediaItems, ...PATRIOTS]}
         showVideos={true}
-        videoFrameClassName='lg:h-60 h-50'
-        title='Galamsey in Ghana: A Visual Journey'
-        subtitle='Exploring the impact of illegal small-scale gold mining'
+        videoFrameClassName="lg:h-60 h-50"
+        title="Galamsey in Ghana: A Visual Journey"
+        subtitle="Exploring the impact of illegal small-scale gold mining"
       />
     </div>
   );

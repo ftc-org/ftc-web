@@ -5,8 +5,7 @@ import Image from "next/image";
 import { Play, Expand } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MediaItem } from "@/types/media";
-import { FullScreenImage } from "../(blog)/components/fullscreen-image";
-import clsx from "clsx";
+import { FullScreenImage } from "../app/(blog)/components/fullscreen-image";
 
 export const ImageMasonryLayout = ({
   mediaItems,
@@ -23,7 +22,6 @@ export const ImageMasonryLayout = ({
 }) => {
   const [fullScreenIndex, setFullScreenIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<"left" | "right">("right");
-  const [isImageLoading, setImageLoading] = useState(true);
 
   const displayedItems = showVideos
     ? mediaItems
@@ -69,7 +67,12 @@ export const ImageMasonryLayout = ({
           <h1 className='my-3 text-center text-3xl'>{title}</h1>
           <p className='my-3 text-center'>{subtitle}</p>
         </div>
-        <motion.div className='columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-6'>
+        <motion.div
+          className='columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-6'
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
           {displayedItems.map((item, index) => (
             <motion.div
               key={item.id}
@@ -85,12 +88,8 @@ export const ImageMasonryLayout = ({
                       width={item.src.width}
                       height={item.src.height}
                       layout='responsive'
-                      className={clsx(
-                        "object-cover h-full",
-                        { blur: isImageLoading },
-                        { "remove-blur": !isImageLoading }
-                      )}
-                      onLoad={() => setImageLoading(false)}
+                      objectFit='cover'
+                      className='cursor-pointer'
                     />
                   ) : (
                     <img
