@@ -3,6 +3,7 @@ import { Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "./providers";
 import { ProgressBar } from "@/components/progress-bar";
+import { FloatingButton } from "@/components/floating-button";
 
 const font = Familjen_Grotesk({ subsets: ["latin"] });
 
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
         url: "/images/default.jpeg",
         width: 1800,
         height: 1600,
-        alt: "Albert Dugba",
+        alt: "#stoGalamsey",
       },
     ],
     locale: "en_US",
@@ -57,11 +58,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <body className={font.className}>
         <ReactQueryProvider>
-          <ProgressBar className="fixed top-0 h-1 bg-aljazeera-red z-50">
+          <ProgressBar className='fixed top-0 h-1 bg-aljazeera-red z-50'>
             {children}
+            <FloatingButton />
           </ProgressBar>
         </ReactQueryProvider>
       </body>
