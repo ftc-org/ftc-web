@@ -3,6 +3,7 @@ import { Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "./providers";
 import { ProgressBar } from "@/components/progress-bar";
+import { FloatingButton } from "@/components/floating-button";
 
 const font = Familjen_Grotesk({ subsets: ["latin"] });
 
@@ -26,7 +27,20 @@ export const metadata: Metadata = {
     description:
       "Free The Citizens is a grassroots initiative fighting galamsey's devastating impact on Ghana's water bodies. We educate, advocate, and mobilize citizens to protect the environment and ensure clean water for all.",
     url: "https://www.freethecitizens.org/",
-    siteName: "#FreeTheCitizens", 
+    siteName: "#FreeTheCitizens",
+    images: [
+      {
+        url: "/images/default.jpeg",
+        width: 800,
+        height: 600,
+      },
+      {
+        url: "/images/default.jpeg",
+        width: 1800,
+        height: 1600,
+        alt: "#stoGalamsey",
+      },
+    ],
     locale: "en_US",
     type: "website",
   },
@@ -44,11 +58,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <body className={font.className}>
         <ReactQueryProvider>
-          <ProgressBar className="fixed top-0 h-1 bg-aljazeera-red z-50">
+          <ProgressBar className='fixed top-0 h-1 bg-aljazeera-red z-50'>
             {children}
+            <FloatingButton />
           </ProgressBar>
         </ReactQueryProvider>
       </body>
