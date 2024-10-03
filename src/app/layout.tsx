@@ -26,20 +26,7 @@ export const metadata: Metadata = {
     description:
       "Free The Citizens is a grassroots initiative fighting galamsey's devastating impact on Ghana's water bodies. We educate, advocate, and mobilize citizens to protect the environment and ensure clean water for all.",
     url: "https://www.freethecitizens.org/",
-    siteName: "#FreeTheCitizens",
-    images: [
-      {
-        url: "/images/default.jpeg",
-        width: 800,
-        height: 600,
-      },
-      {
-        url: "/images/default.jpeg",
-        width: 1800,
-        height: 1600,
-        alt: "Albert Dugba",
-      },
-    ],
+    siteName: "#FreeTheCitizens", 
     locale: "en_US",
     type: "website",
   },
