@@ -123,7 +123,7 @@ export function FloatingButton() {
                     target='_blank'
                     href={`https://${
                       matches ? "" : "mobile."
-                    }twitter.com/intent/tweet?text="FreeTheCitizens #StopGalamseyNow"&url=${shareLink}`}
+                    }twitter.com/intent/tweet?text="#FreeTheCitizens#StopGalamseyNow"&url=${shareLink}`}
                   >
                     <BsTwitterX className='h-5 w-5 fill-black' />
                   </motion.a>

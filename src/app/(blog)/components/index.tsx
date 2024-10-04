@@ -24,10 +24,7 @@ function Landing() {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const newShuffledImages = shuffleArray([
-        ...PATRIOTS,
-        ...mediaItems,
-      ]).slice(3, 9);
+      const newShuffledImages = shuffleArray([...PATRIOTS, ...mediaItems]);
       setShuffledImages(newShuffledImages);
     }, 4500);
 
@@ -87,7 +84,7 @@ function Landing() {
         <div className='lg:w-5/12'>
           {isSuccess && showLiveEvents?.length === 0 ? null : (
             <ul className='mt-10 flex-1 grid md:grid-cols-2 grid-cols-1 h-fit gap-7'>
-              {showLiveEvents?.map((event, index) => (
+              {showLiveEvents?.slice(0, 4).map((event, index) => (
                 <PostCard item={event} key={index} />
               ))}
             </ul>
@@ -104,7 +101,7 @@ function Landing() {
                 <ChevronRight />
               </ProgressBarLink>
             </div>
-            <ImageMasonryLayout mediaItems={shuffledImages} />
+            <ImageMasonryLayout mediaItems={shuffledImages.slice(0, 6)} />
           </ul>
         </div>
       </div>

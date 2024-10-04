@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import Image from "next/image";
 import { Play, Expand } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -23,9 +23,13 @@ export const ImageMasonryLayout = ({
   const [fullScreenIndex, setFullScreenIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<"left" | "right">("right");
 
-  const displayedItems = showVideos
-    ? mediaItems
-    : mediaItems.filter((item) => item.type === "image");
+  const displayedItems = useMemo(() => {
+    const filteredItems = showVideos
+      ? mediaItems
+      : mediaItems.filter((item) => item.type === "image");
+
+    return filteredItems;
+  }, [mediaItems, showVideos]);
 
   const openFullScreen = (index: number) => {
     if (displayedItems[index].type === "image") {
@@ -77,7 +81,7 @@ export const ImageMasonryLayout = ({
             {displayedItems.map((item, index) => (
               <motion.div
                 layoutId={item.id.toString()}
-                key={item.id}
+                key={`${item.id}-${index}`}
                 className='relative overflow-hidden rounded-xl transition-shadow duration-300 group break-inside-avoid mb-4'
                 onClick={() => openFullScreen(index)}
               >
