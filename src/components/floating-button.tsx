@@ -128,8 +128,9 @@ export function FloatingButton() {
                     <BsTwitterX className='h-5 w-5 fill-black' />
                   </motion.a>
                 ) : (
-                  <motion.button
+                  <motion.div
                     onClick={handleShare}
+                    role='button'
                     key={index}
                     className='bg-primary text-primary-foreground rounded-full p-3'
                     variants={itemVariants}
@@ -137,7 +138,7 @@ export function FloatingButton() {
                     whileTap={{ scale: 0.95 }}
                   >
                     {social.icon}
-                  </motion.button>
+                  </motion.div>
                 )
               )}
             </motion.div>

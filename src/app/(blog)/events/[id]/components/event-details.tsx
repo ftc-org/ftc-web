@@ -76,10 +76,11 @@ function UpdateItem({ item }: { item: Update }) {
   useEffect(() => {
     const itemContainer = document.getElementById(String(itemToScrollTo));
 
-    itemContainer?.scrollIntoView({ behavior: "smooth", block: "center" });
+    itemContainer?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
   }, [itemToScrollTo]);
-
-  console.log("itemToScrollTo", itemToScrollTo);
 
   return (
     <div>
